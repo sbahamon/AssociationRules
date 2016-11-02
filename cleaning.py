@@ -35,9 +35,11 @@ for i in range(len(baskets)):
 del i, grouping
 
 #saves to csv
-#bdf = pd.DataFrame(baskets)
-#bdf.to_csv('baskets.csv', index = False, header = False)
+bdf = pd.DataFrame(baskets)
+bdf.to_csv('baskets.csv', index = False, header = False)
 
-#apriori
+#association rules
 itemsets = dict(frequent_itemsets(baskets, 500))
 rules = list(association_rules(itemsets, .2))
+rdf = pd.DataFrame(rules, columns = ["LHS", "RHS", "Support", "Confidence"])
+rdf.to_csv('rules.csv', header = True)
